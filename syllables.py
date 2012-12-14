@@ -1,14 +1,11 @@
-
 import nltk
-import curses.ascii
 from collections import defaultdict
-
 
 rhyme_entries = nltk.corpus.cmudict.entries()
 
 syllable_guide = defaultdict( lambda: 1 )
 for word, pronunciations in rhyme_entries:
-    syllable_guide[word] = len([x for x in pronunciations if curses.ascii.isdigit(x[-1]) ]) 
+    syllable_guide[word] = len([x for x in pronunciations if x[-1].isdigit() ]) 
 
 def syllables( word ):
     """

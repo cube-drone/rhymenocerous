@@ -79,9 +79,8 @@ def rhyme_quality( p1, p2 ):
 
 def word_rhyme_candidates( word ):
     """
-        Produce a sorted list of potential rhyme candidates for a word,
-        best to worst, with a 'quality' number.
-        >>> print [word for quality, word in word_rhyme_candidates("battalion")[:5]]
+        Produce a list of potential rhyme candidates for a word
+        >>> print word_rhyme_candidates("battalion")[:5]
         ['stallion', 'italian', 'scallion', 'medallion', 'mccallion']
     """
     candidates = []
