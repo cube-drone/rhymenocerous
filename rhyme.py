@@ -2,6 +2,9 @@ import copy
 import nltk
 from collections import defaultdict
 import random
+import cPickle
+import gzip
+import os
 
 import syllables
 
@@ -36,9 +39,15 @@ def last_word( sentence ):
     else:
         return ""
 
-for sentence in mega_sentences:
-    lw = last_word(sentence)
-    last_word_sentences[ lw ].append(sentence)
+if os.path.exists( "sentences.gz" ):
+    with gzip.open( "sentences.gz", "r" ) as cache_file:
+        last_word_sentences = cPickle.load( cache_file )
+else:
+    for sentence in mega_sentences:
+        lw = last_word(sentence)
+        last_word_sentences[ lw ].append(sentence)
+    with gzip.open( "sentences.gz", "w") as cache_file:
+        cPickle.dump(last_word_sentences, cache_file)
 
 def candidate_sentences( word ):
     """
